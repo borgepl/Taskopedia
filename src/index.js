@@ -1,17 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Header from './layout/Header';
+import Student from './Components/Student/Student';
+import Footer from './layout/Footer';
+import MainBody from './MainBody';
+import { faker } from '@faker-js/faker';
+import StudentReview from './Components/Student/StudentReview';
+import "./css/style.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+/* root.render(<div>Hello World</div>);
+*/
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(
+  <div className='container-fluid bg-black' style={{color:'gray'}}>
+    <Header />
+    <MainBody />
+    <div className='row px-2'>Students Enrolled</div>
+    <Student experience={faker.number.int({ min: 1, max: 5 })} name={faker.person.fullName()} userImg={faker.number.int({ min: 20, max: 70 })} sex="men">
+      <StudentReview></StudentReview>
+    </Student>
+    <Student experience={faker.number.int({ min: 1, max: 5 })} name={faker.person.fullName()} userImg="65" sex="women" />
+    <Student experience={faker.number.int({ min: 1, max: 5 })} name={faker.person.fullName()} userImg="20" sex="men"/>
+    <Footer />
+  </div>
+);
